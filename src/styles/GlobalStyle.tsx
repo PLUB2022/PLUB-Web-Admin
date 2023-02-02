@@ -12,10 +12,14 @@ const style = css`
     -webkit-text-size-adjust: 100%;
   }
   body {
+    font-family: 'Noto Sans KR', sans-serif;
     margin: 0;
   }
   main {
     display: block;
+  }
+  div {
+    box-sizing: border-box;
   }
   h1 {
     font-size: 2em;
