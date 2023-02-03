@@ -9,3 +9,7 @@ export const Container = styled.div`
     height: 100vh;
   }
 `;
+
+export const TabTitle = styled.div`
+  font-size: 36px;
+`;

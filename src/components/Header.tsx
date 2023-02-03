@@ -1,8 +1,14 @@
 import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
 
 import Button from './shared/Button';
 
 const Header = () => {
+  const navigate = useNavigate();
+  const onClickLogout = () => {
+    navigate('/');
+  };
+
   return (
     <Container>
       <TitleBox>
@@ -11,7 +17,7 @@ const Header = () => {
       </TitleBox>
       <AuthBox>
         <UserName>adminIDEx00</UserName>
-        <Button width='77px' bgColor='#dc3e3e'>
+        <Button width='77px' bgColor='#dc3e3e' onClick={onClickLogout}>
           로그아웃
         </Button>
       </AuthBox>
