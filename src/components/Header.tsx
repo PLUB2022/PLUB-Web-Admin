@@ -22,11 +22,8 @@ const Header = () => {
 export default Header;
 
 const Container = styled.div`
-  position: fixed;
   display: flex;
   justify-content: space-between;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 80px;
   padding: 0 24px;
