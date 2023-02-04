@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import { COLORS } from '../constants/colors';
-import useSignIn from '../hooks/useSignin';
+import useSignIn from '../hooks/useSignIn';
 import { TabTitle, TextField } from '../styles/Common';
 
 const SignIn = () => {

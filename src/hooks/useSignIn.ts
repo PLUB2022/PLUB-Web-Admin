@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
-interface IUseSignin {
+interface IUseSignIn {
   username: string;
   password: string;
 }
 
 const useSignIn = () => {
-  const [values, setValues] = useState<IUseSignin>({
+  const [values, setValues] = useState<IUseSignIn>({
     username: '',
     password: '',
   });
