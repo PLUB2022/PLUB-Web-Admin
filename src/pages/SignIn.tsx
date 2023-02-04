@@ -63,4 +63,5 @@ const Button = styled.button`
   border-radius: 10px;
   color: #fff;
   background: ${COLORS.MAIN};
+  cursor: pointer;
 `;

@@ -1,29 +1,26 @@
 import styled from '@emotion/styled';
-import { useNavigate } from 'react-router-dom';
-
-import { TOKEN_KEY } from '../constants/auth';
-import { getLocalStorage } from '../utils/storage';
-import Button from './shared/Button';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
-  const isLogin = getLocalStorage(TOKEN_KEY);
+  const { pathname } = useLocation();
+  const isLoginPage = pathname === '/';
   const navigate = useNavigate();
   const onClickLogout = () => {
     navigate('/');
   };
 
   return (
-    <Container>
+    <Container id={isLoginPage ? 'fix' : 'rl'}>
       <TitleBox>
         <img src='/plub_logo.svg' alt='plub_logo' />
         <Logo>관리자</Logo>
       </TitleBox>
-      {isLogin && (
+      {!isLoginPage && (
         <AuthBox>
-          <UserName>adminIDEx00</UserName>
-          <Button width='77px' bgColor='#dc3e3e' onClick={onClickLogout}>
+          <NavLink>내 정보</NavLink>
+          <NavLink id='logout' onClick={onClickLogout}>
             로그아웃
-          </Button>
+          </NavLink>
         </AuthBox>
       )}
     </Container>
@@ -35,8 +32,14 @@ export default Header;
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   padding: 30px 62px;
+  &#fix {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
 `;
 
 const TitleBox = styled.div`
@@ -56,8 +59,12 @@ const Logo = styled.div`
   font-weight: 700;
 `;
 
-const UserName = styled.div`
-  font-size: 24px;
-  font-weight: 700;
-  margin-right: 10px;
+const NavLink = styled.div`
+  font-weight: 400;
+  margin: 0px 10px;
+  cursor: pointer;
+  &#logout {
+    font-weight: 700;
+    color: #f75b2b;
+  }
 `;

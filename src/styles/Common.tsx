@@ -14,6 +14,7 @@ export const Container = styled.div`
 export const TabTitle = styled.div`
   font-size: 35px;
   font-weight: 700;
+  padding: 0px 5px;
 `;
 
 export const TextField = styled.input`
