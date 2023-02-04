@@ -34,7 +34,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 30px 62px;
+  padding: 24px 60px;
   &#fix {
     position: fixed;
     top: 0;

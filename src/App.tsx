@@ -14,7 +14,24 @@ const App = () => {
           <Route path={ROUTES.SIGNIN} element={<SignIn />} />
         </Route>
         <Route element={<Logined />}>
-          <Route path={ROUTES.MEMBERS} element={<Members />} />
+          <Route path={ROUTES.MANAGE.ACCOUNT.ROOT} element={<Members />} />
+          <Route path={ROUTES.MANAGE.DASHBOARD.ROOT} element={<Members />} />
+          <Route path={ROUTES.MANAGE.USER.LIST} element={<Members />} />
+          <Route path={ROUTES.MANAGE.USER.EXIT} element={<Members />} />
+          <Route path={ROUTES.MANAGE.USER.BAN} element={<Members />} />
+          <Route path={ROUTES.MANAGE.GROUP.LIST} element={<Members />} />
+          <Route path={ROUTES.MANAGE.GROUP.POST} element={<Members />} />
+          <Route path={ROUTES.MANAGE.GROUP.RECRUIT} element={<Members />} />
+          <Route path={ROUTES.MANAGE.MARKETING.BANNER} element={<Members />} />
+          <Route path={ROUTES.MANAGE.MARKETING.EVENT} element={<Members />} />
+          <Route path={ROUTES.MANAGE.STATISTICS.USER} element={<Members />} />
+          <Route path={ROUTES.MANAGE.STATISTICS.GROUP} element={<Members />} />
+          <Route path={ROUTES.MANAGE.SERVICE.INQUIRY} element={<Members />} />
+          <Route path={ROUTES.MANAGE.SERVICE.NOTICE} element={<Members />} />
+          <Route
+            path={ROUTES.MANAGE.SERVICE.EVALUATION}
+            element={<Members />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
