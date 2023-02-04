@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 interface ButtonProps {
   children: React.ReactNode;
   bgColor: string;
-  width: string;
+  width?: string;
   onClick?: () => void;
   disabled?: boolean;
 }
@@ -17,7 +17,7 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <CustomButton
-      width={width}
+      width={width || '100%'}
       bgColor={bgColor}
       onClick={onClick}
       disabled={disabled}>
