@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ROUTES } from './constants/routes';
 import Logined from './layout/Logined';
 import NotLogined from './layout/NotLogined';
+import AdminInfo from './pages/AdminInfo';
 import Members from './pages/Members';
 import SignIn from './pages/SignIn';
 
@@ -14,7 +15,7 @@ const App = () => {
           <Route path={ROUTES.SIGNIN} element={<SignIn />} />
         </Route>
         <Route element={<Logined />}>
-          <Route path={ROUTES.MANAGE.ACCOUNT.ROOT} element={<Members />} />
+          <Route path={ROUTES.MANAGE.ACCOUNT.ROOT} element={<AdminInfo />} />
           <Route path={ROUTES.MANAGE.DASHBOARD.ROOT} element={<Members />} />
           <Route path={ROUTES.MANAGE.USER.LIST} element={<Members />} />
           <Route path={ROUTES.MANAGE.USER.EXIT} element={<Members />} />
