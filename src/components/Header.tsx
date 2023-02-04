@@ -1,9 +1,12 @@
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
+import { TOKEN_KEY } from '../constants/auth';
+import { getLocalStorage } from '../utils/storage';
 import Button from './shared/Button';
 
 const Header = () => {
+  const isLogin = getLocalStorage(TOKEN_KEY);
   const navigate = useNavigate();
   const onClickLogout = () => {
     navigate('/');
@@ -12,15 +15,17 @@ const Header = () => {
   return (
     <Container>
       <TitleBox>
-        <Logo>PLUB</Logo>
-        <Logo id='title'>Service Admin</Logo>
+        <img src='/plub_logo.svg' alt='plub_logo' />
+        <Logo>관리자</Logo>
       </TitleBox>
-      <AuthBox>
-        <UserName>adminIDEx00</UserName>
-        <Button width='77px' bgColor='#dc3e3e' onClick={onClickLogout}>
-          로그아웃
-        </Button>
-      </AuthBox>
+      {isLogin && (
+        <AuthBox>
+          <UserName>adminIDEx00</UserName>
+          <Button width='77px' bgColor='#dc3e3e' onClick={onClickLogout}>
+            로그아웃
+          </Button>
+        </AuthBox>
+      )}
     </Container>
   );
 };
@@ -31,17 +36,13 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 80px;
-  padding: 0 24px;
-  background-color: #d9d9d9;
+  padding: 30px 62px;
 `;
 
 const TitleBox = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 335px;
-  height: 100%;
+  align-items: flex-end;
+  gap: 10px;
 `;
 
 const AuthBox = styled.div`
@@ -51,11 +52,8 @@ const AuthBox = styled.div`
 `;
 
 const Logo = styled.div`
-  font-size: 32px;
+  font-size: 20px;
   font-weight: 700;
-  &#title {
-    font-weight: 300;
-  }
 `;
 
 const UserName = styled.div`
