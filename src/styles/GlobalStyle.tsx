@@ -11,15 +11,17 @@ const style = css`
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
   }
+  * {
+    box-sizing: border-box;
+    font-family: 'Pretendard Variable', sans-serif;
+    font-weight: 500;
+  }
   body {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard Variable', sans-serif;
     margin: 0;
   }
   main {
     display: block;
-  }
-  div {
-    box-sizing: border-box;
   }
   h1 {
     font-size: 2em;
@@ -29,10 +31,6 @@ const style = css`
     box-sizing: content-box;
     height: 0;
     overflow: visible;
-  }
-  pre {
-    font-family: monospace, monospace;
-    font-size: 1em;
   }
   a {
     background-color: transparent;
@@ -49,7 +47,6 @@ const style = css`
   code,
   kbd,
   samp {
-    font-family: monospace, monospace;
     font-size: 1em;
   }
   small {
