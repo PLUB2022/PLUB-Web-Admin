@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface IUseSignIn {
   username: string;
@@ -6,6 +7,7 @@ interface IUseSignIn {
 }
 
 const useSignIn = () => {
+  const navigate = useNavigate();
   const [values, setValues] = useState<IUseSignIn>({
     username: '',
     password: '',
@@ -22,6 +24,7 @@ const useSignIn = () => {
     setLoading(true);
     try {
       console.log(values);
+      navigate('/manage/dashboard');
     } catch (error) {
       console.log(error);
     }
