@@ -81,6 +81,7 @@ const style = css`
   button,
   input {
     overflow: visible;
+    transition: all 0.3s ease;
   }
   button,
   select {
