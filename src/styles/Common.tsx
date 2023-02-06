@@ -23,8 +23,27 @@ export const TextField = styled.input`
   border-radius: 10px;
   padding: 12px 16px;
   margin: 8px 0;
+  &#gray {
+    background-color: #fbfbfb;
+    margin-bottom: 20px;
+  }
   &:focus {
     outline: none;
     border: 1px solid ${COLORS.MAIN};
   }
+`;
+
+export const Modal = styled.div`
+  position: absolute;
+  padding: 24px;
+  top: 60px;
+  left: 600px;
+  border-radius: 20px;
+  width: 420px;
+  background-color: #fbfbfb;
+`;
+
+export const Label = styled.div`
+  font-size: 16px;
+  margin-top: 10px;
 `;
