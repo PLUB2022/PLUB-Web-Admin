@@ -25,13 +25,13 @@ const ResetPassword = ({ modalOff }: ResetPasswordProps) => {
 
 export default ResetPassword;
 
-const Title = styled.div`
+export const Title = styled.div`
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 32px;
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   color: ${COLORS.MAIN};
   background-color: ${COLORS.SUB};
   border: none;
@@ -39,6 +39,7 @@ const Button = styled.button`
   border-radius: 10px;
   cursor: pointer;
   float: right;
+  margin-top: 10px;
   &#cancel {
     background: none;
     color: #000;
