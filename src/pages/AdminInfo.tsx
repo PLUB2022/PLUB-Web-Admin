@@ -14,11 +14,14 @@ const AdminInfo = () => {
 
 export default AdminInfo;
 
-const Container = styled.div`
+export const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 70px;
   width: 100%;
   padding: 15px;
+  &#dashboard {
+    gap: 40px;
+  }
 `;

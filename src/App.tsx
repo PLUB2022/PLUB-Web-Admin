@@ -4,6 +4,7 @@ import { ROUTES } from './constants/routes';
 import Logined from './layout/Logined';
 import NotLogined from './layout/NotLogined';
 import AdminInfo from './pages/AdminInfo';
+import Dashboard from './pages/Dashboard';
 import Members from './pages/Members';
 import SignIn from './pages/SignIn';
 
@@ -16,7 +17,7 @@ const App = () => {
         </Route>
         <Route element={<Logined />}>
           <Route path={ROUTES.MANAGE.ACCOUNT.ROOT} element={<AdminInfo />} />
-          <Route path={ROUTES.MANAGE.DASHBOARD.ROOT} element={<Members />} />
+          <Route path={ROUTES.MANAGE.DASHBOARD.ROOT} element={<Dashboard />} />
           <Route path={ROUTES.MANAGE.USER.LIST} element={<Members />} />
           <Route path={ROUTES.MANAGE.USER.EXIT} element={<Members />} />
           <Route path={ROUTES.MANAGE.USER.BAN} element={<Members />} />
