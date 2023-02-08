@@ -1,31 +1,46 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 
 import { adminInfo, canChange } from '../../constants/adminInfo';
 import { COLORS } from '../../constants/colors';
 import { AdminInfo } from '../../interfaces/adminInfo';
+import ResetPassword from './resetPassword';
+import ResetPhone from './resetPhone';
 
-interface InfoTableProps {
-  data: AdminInfo;
-}
+const exData: AdminInfo = {
+  userId: 'ADMIN1234',
+  name: '관리자',
+  level: '일반관리자',
+  phone: '01012345678',
+};
 
-const InfoTable = ({ data }: InfoTableProps) => {
-  const modify = (key: string) =>
-    canChange.includes(key) && <Modify>변경</Modify>;
+const InfoTable = () => {
+  const [modal, setModal] = useState('');
+  const modalOff = () => setModal('');
 
+  const modify = (key: string) => {
+    const modalOn = () => setModal(key);
+    const change = canChange.includes(key);
+    return change && <Modify onClick={modalOn}>변경</Modify>;
+  };
   return (
-    <Table>
-      <tbody>
-        {adminInfo(data).map(({ key, value }) => (
-          <tr key={key}>
-            <Td>{key}</Td>
-            <Td id='data'>
-              {value}
-              {modify(key)}
-            </Td>
-          </tr>
-        ))}
-      </tbody>
-    </Table>
+    <>
+      <Table>
+        <tbody>
+          {adminInfo(exData).map(({ key, value }) => (
+            <tr key={key}>
+              <Td>{key}</Td>
+              <Td id='data'>
+                {value}
+                {modify(key)}
+              </Td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+      {modal === '비밀번호' && <ResetPassword modalOff={modalOff} />}
+      {modal === '연락처' && <ResetPhone modalOff={modalOff} />}
+    </>
   );
 };
 
