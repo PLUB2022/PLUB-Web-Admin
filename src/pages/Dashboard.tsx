@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 
 import { Title } from '../components/AdminInfo/resetPassword';
 import DailySummary from '../components/Dashboard/DailySummary';
+import InquiryReport from '../components/Dashboard/InquiryReport';
+import PlubRank from '../components/Dashboard/PlubRank';
 import StatisticsChart from '../components/Dashboard/StatisticsChart';
 import { TabTitle } from '../styles/Common';
 import { Container } from './AdminInfo';
@@ -21,9 +23,11 @@ const Dashboard = () => {
         </GridBox>
         <GridBox>
           <Title>문의/신고</Title>
+          <InquiryReport />
         </GridBox>
         <GridBox>
           <Title>실시간 좋아요 순 플러빙</Title>
+          <PlubRank />
         </GridBox>
       </GridContainer>
     </Container>
