@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-interface IUseSignIn {
-  username: string;
-  password: string;
-}
+import { login } from '../apis/Auth';
+import { ERROR_MESSAGES } from '../constants/errorMessages';
+import { ROUTES } from '../constants/routes';
+import { LoginError, UseSignIn } from '../interfaces/login';
 
 const useSignIn = () => {
   const navigate = useNavigate();
-  const [values, setValues] = useState<IUseSignIn>({
-    username: '',
+  const [values, setValues] = useState<UseSignIn>({
+    email: '',
     password: '',
   });
+  const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,16 +23,17 @@ const useSignIn = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    try {
-      console.log(values);
-      navigate('/manage/dashboard');
-    } catch (error) {
-      console.log(error);
+    const { isSignInFailed, errorCode }: LoginError = await login(values);
+    if (isSignInFailed) {
+      setError(ERROR_MESSAGES.AUTH[errorCode]);
+      setLoading(false);
+      return;
     }
+    navigate(ROUTES.MANAGE.DASHBOARD.ROOT, { replace: true });
     setLoading(false);
   };
 
-  return { values, loading, handleChange, handleSubmit };
+  return { values, error, loading, handleChange, handleSubmit };
 };
 
 export default useSignIn;
