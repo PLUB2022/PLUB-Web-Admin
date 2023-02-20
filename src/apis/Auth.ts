@@ -1,19 +1,10 @@
 import { isAxiosError } from 'axios';
 
 import { REFRESH_KEY, TOKEN_KEY } from '../constants/auth';
-import { UseSignIn } from '../interfaces/login';
+import { LoginResponse, UseSignIn } from '../interfaces/login';
 import { setLocalStorage } from '../utils/storage';
 import { API_URLS } from './../constants/apiUrls';
 import http from './instance';
-
-interface LoginResponse {
-  data: {
-    data: {
-      accessToken: string;
-      refreshToken: string;
-    };
-  };
-}
 
 export const login = async (data: UseSignIn) => {
   try {
