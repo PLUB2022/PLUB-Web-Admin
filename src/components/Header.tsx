@@ -1,13 +1,9 @@
 import styled from '@emotion/styled';
-import { useLocation, useNavigate } from 'react-router-dom';
+
+import useControllerHeader from '../hooks/useControllHeader';
 
 const Header = () => {
-  const { pathname } = useLocation();
-  const isLoginPage = pathname === '/';
-  const navigate = useNavigate();
-  const onClickLogout = () => {
-    navigate('/');
-  };
+  const { isLoginPage, handleLogout } = useControllerHeader();
 
   return (
     <Container id={isLoginPage ? 'fix' : 'rl'}>
@@ -18,7 +14,7 @@ const Header = () => {
       {!isLoginPage && (
         <AuthBox>
           <NavLink>내 정보</NavLink>
-          <NavLink id='logout' onClick={onClickLogout}>
+          <NavLink id='logout' onClick={handleLogout}>
             로그아웃
           </NavLink>
         </AuthBox>
