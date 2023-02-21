@@ -11,16 +11,26 @@ export interface StatsResponse {
 }
 
 export interface WeeklySummary {
-  date: string;
-  plubbings: number;
-  accounts: number;
-  inquires: number;
-  reports: number;
+  week: {
+    date: string;
+    plubbings: number;
+    accounts: number;
+    inquires: number;
+    reports: number;
+  }[];
+  weeklyTotalAccounts: number;
+  weeklyTotalPlubbings: number;
+  weeklyTotalInquires: number;
+  weeklyTotalReports: number;
+  monthlyTotalAccounts: number;
+  monthlyTotalPlubbings: number;
+  monthlyTotalInquires: number;
+  monthlyTotalReports: number;
 }
 
 export interface WeeklySummaryResponse {
   data: {
-    data: WeeklySummary[];
+    data: WeeklySummary;
   };
 }
 

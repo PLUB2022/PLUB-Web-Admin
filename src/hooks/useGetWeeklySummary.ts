@@ -4,7 +4,7 @@ import { WeeklySummary } from '../interfaces/dashboard';
 import { getWeeklySummary } from './../apis/Dashboard';
 
 const useGetWeeklySummary = () => {
-  const [weeklySummary, setWeeklySummary] = useState<WeeklySummary[]>();
+  const [weeklySummary, setWeeklySummary] = useState<WeeklySummary>();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
