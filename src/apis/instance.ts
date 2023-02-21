@@ -4,7 +4,7 @@ import { TOKEN_KEY } from '../constants/auth';
 import { HTTP_METHODS } from '../constants/http';
 import { getLocalStorage } from '../utils/storage';
 
-const API_BASE_URL = '/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL + '/api';
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,

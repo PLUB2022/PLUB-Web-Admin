@@ -15,7 +15,7 @@ const exData: AdminInfo = {
 };
 
 const InfoTable = () => {
-  const [modal, setModal] = useState('');
+  const [modal, setModal] = useState<string>('');
   const modalOff = () => setModal('');
 
   const modify = (key: string) => {

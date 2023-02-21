@@ -16,7 +16,7 @@ const DailySummary = () => {
           <Td>문의 수</Td>
           <Td>신고 수</Td>
         </Tr>
-        {weeklySummary.map(
+        {weeklySummary.week.map(
           ({ plubbings, accounts, inquires, reports, date }) => (
             <Tr key={date}>
               <Td id='date'>{date}</Td>
@@ -29,25 +29,17 @@ const DailySummary = () => {
         )}
         <Tr id='weekTotal'>
           <Td id='date'>최근 7일 합계</Td>
-          <Td>
-            {weeklySummary.reduce((prev, { plubbings }) => prev + plubbings, 0)}
-          </Td>
-          <Td>
-            {weeklySummary.reduce((prev, { accounts }) => prev + accounts, 0)}
-          </Td>
-          <Td>
-            {weeklySummary.reduce((prev, { inquires }) => prev + inquires, 0)}
-          </Td>
-          <Td>
-            {weeklySummary.reduce((prev, { reports }) => prev + reports, 0)}
-          </Td>
+          <Td>{weeklySummary.weeklyTotalPlubbings}</Td>
+          <Td>{weeklySummary.weeklyTotalAccounts}</Td>
+          <Td>{weeklySummary.weeklyTotalInquires}</Td>
+          <Td>{weeklySummary.weeklyTotalReports}</Td>
         </Tr>
         <Tr id='monthTotal'>
           <Td id='date'>이번달 합계</Td>
-          <Td>210</Td>
-          <Td>214</Td>
-          <Td>0</Td>
-          <Td>0</Td>
+          <Td>{weeklySummary.monthlyTotalPlubbings}</Td>
+          <Td>{weeklySummary.monthlyTotalAccounts}</Td>
+          <Td>{weeklySummary.monthlyTotalInquires}</Td>
+          <Td>{weeklySummary.monthlyTotalReports}</Td>
         </Tr>
       </tbody>
     </Table>

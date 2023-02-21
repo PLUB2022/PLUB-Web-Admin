@@ -11,14 +11,4 @@ export default defineConfig({
       },
     }),
   ],
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://www.plub.co.kr/api',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-        secure: false,
-      },
-    },
-  },
 });
