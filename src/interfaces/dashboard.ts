@@ -5,9 +5,7 @@ export interface DashboardStats {
 }
 
 export interface StatsResponse {
-  data: {
-    data: DashboardStats[];
-  };
+  data: DashboardStats[];
 }
 
 export interface WeeklySummary {
@@ -29,9 +27,7 @@ export interface WeeklySummary {
 }
 
 export interface WeeklySummaryResponse {
-  data: {
-    data: WeeklySummary;
-  };
+  data: WeeklySummary;
 }
 
 export interface PlubbingRanking {
@@ -40,7 +36,5 @@ export interface PlubbingRanking {
 }
 
 export interface PlubbingRankingResponse {
-  data: {
-    data: PlubbingRanking[];
-  };
+  data: PlubbingRanking[];
 }

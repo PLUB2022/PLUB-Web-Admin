@@ -1,6 +1,7 @@
 export const API_URLS = {
   AUTH: {
     LOGIN: '/auth/login/admin',
+    LOGOUT: '/auth/logout',
     REFRESH: '/auth/reissue',
   },
   DASHBOARD: {
