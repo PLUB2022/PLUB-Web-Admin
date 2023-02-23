@@ -5,10 +5,8 @@ export interface UseSignIn {
 
 export interface LoginResponse {
   data: {
-    data: {
-      accessToken: string;
-      refreshToken: string;
-    };
+    accessToken: string;
+    refreshToken: string;
   };
 }
 
@@ -18,7 +16,5 @@ export interface LoginError {
 }
 
 export interface LogoutResponse {
-  data: {
-    data: string;
-  };
+  data: string;
 }
