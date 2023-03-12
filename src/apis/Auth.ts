@@ -1,21 +1,17 @@
 import { isAxiosError } from 'axios';
 
 import { REFRESH_KEY, TOKEN_KEY } from '../constants/auth';
-import { LoginResponse, LogoutResponse, UseSignIn } from '../interfaces/login';
-import { removeLocalStorage, setLocalStorage } from '../utils/storage';
+import { LoginResponse, UseSignIn } from '../interfaces/login';
+import { setLocalStorage } from '../utils/storage';
 import { API_URLS } from './../constants/apiUrls';
+import { getLocalStorage, removeLocalStorage } from './../utils/storage';
 import http from './instance';
 
 export const login = async (data: UseSignIn) => {
   try {
     const {
-      data: {
-        data: { accessToken, refreshToken },
-      },
-    }: LoginResponse = await http.post({
-      url: API_URLS.AUTH.LOGIN,
-      data,
-    });
+      data: { accessToken, refreshToken },
+    }: LoginResponse = await http.post(API_URLS.AUTH.LOGIN, data);
     accessToken && setLocalStorage(TOKEN_KEY, accessToken);
     refreshToken && setLocalStorage(REFRESH_KEY, refreshToken);
   } catch (error) {
@@ -31,22 +27,29 @@ export const login = async (data: UseSignIn) => {
 
 export const logout = async () => {
   try {
-    const {
-      data: { data },
-    }: LogoutResponse = await http.get({
-      url: API_URLS.AUTH.LOGOUT,
-    });
-    if (data) {
-      removeLocalStorage(TOKEN_KEY);
-      removeLocalStorage(REFRESH_KEY);
-    }
+    http.get(API_URLS.AUTH.LOGOUT);
   } catch (error) {
     if (error && isAxiosError(error)) {
-      return {
-        isSignOutFailed: true,
-        errorCode: error.response?.data.statusCode,
-      };
+      console.error(error.response);
     }
   }
-  return { isSignOutFailed: false, errorCode: undefined };
+  removeLocalStorage(TOKEN_KEY);
+  removeLocalStorage(REFRESH_KEY);
+};
+
+export const refresh = async () => {
+  const data = { refreshToken: getLocalStorage(REFRESH_KEY) };
+  try {
+    const {
+      data: { accessToken, refreshToken },
+    }: LoginResponse = await http.post(API_URLS.AUTH.REFRESH, data);
+
+    accessToken && setLocalStorage(TOKEN_KEY, accessToken);
+    refreshToken && setLocalStorage(REFRESH_KEY, refreshToken);
+    return accessToken;
+  } catch (error) {
+    if (error && isAxiosError(error)) {
+      console.error(error);
+    }
+  }
 };
