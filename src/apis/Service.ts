@@ -7,7 +7,7 @@ export const getNoticeList = async () => {
     const { pageResponse }: NoticeListResponse = await http.get(
       API_URLS.SERVICE.NOTICE.ITEM
     );
-    return pageResponse;
+    return pageResponse.content;
   } catch (error) {
     console.error(error);
   }
