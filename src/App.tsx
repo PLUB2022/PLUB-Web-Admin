@@ -6,6 +6,7 @@ import NotLogined from './layout/NotLogined';
 import AdminInfo from './pages/AdminInfo';
 import Dashboard from './pages/Dashboard';
 import Members from './pages/Members';
+import Notice from './pages/Notice';
 import SignIn from './pages/SignIn';
 
 const App = () => {
@@ -29,7 +30,7 @@ const App = () => {
           <Route path={ROUTES.MANAGE.STATISTICS.USER} element={<Members />} />
           <Route path={ROUTES.MANAGE.STATISTICS.GROUP} element={<Members />} />
           <Route path={ROUTES.MANAGE.SERVICE.INQUIRY} element={<Members />} />
-          <Route path={ROUTES.MANAGE.SERVICE.NOTICE} element={<Members />} />
+          <Route path={ROUTES.MANAGE.SERVICE.NOTICE} element={<Notice />} />
           <Route
             path={ROUTES.MANAGE.SERVICE.EVALUATION}
             element={<Members />}
