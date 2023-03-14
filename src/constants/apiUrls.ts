@@ -9,4 +9,10 @@ export const API_URLS = {
     WEEKLY_SUMMARY: '/admin/weekly-summary',
     PLUBBING_RANKING: '/admin/plubbing-ranking',
   },
+  SERVICE: {
+    NOTICE: {
+      ITEM: '/announcements',
+      DETAIL: (id: number) => `/announcements/${id}`,
+    },
+  },
 };
