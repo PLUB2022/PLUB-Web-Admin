@@ -6,6 +6,11 @@ export interface Notice {
   updatedAt: string;
 }
 
+export interface CreateNoticeRequest {
+  title: string;
+  content: string;
+}
+
 export interface NoticeListResponse {
   pageResponse: {
     totalElements: number;
