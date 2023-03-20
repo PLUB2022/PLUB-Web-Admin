@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { login } from '../apis/Auth';
 import { ERROR_MESSAGES } from '../constants/errorMessages';
 import { ROUTES } from '../constants/routes';
 import { LoginError, UseSignIn } from '../interfaces/login';
+import { isLogin } from './../utils/storage';
 
 const useSignIn = () => {
   const navigate = useNavigate();
@@ -32,6 +33,10 @@ const useSignIn = () => {
     navigate(ROUTES.MANAGE.DASHBOARD.ROOT, { replace: true });
     setLoading(false);
   };
+
+  useEffect(() => {
+    isLogin() && navigate(ROUTES.MANAGE.DASHBOARD.ROOT, { replace: true });
+  }, []);
 
   return { values, error, loading, handleChange, handleSubmit };
 };

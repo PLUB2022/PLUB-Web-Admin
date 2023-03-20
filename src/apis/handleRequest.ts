@@ -7,6 +7,16 @@ import { isTokenExpired } from './../utils/istokenExpired';
 import { getLocalStorage, removeLocalStorage } from './../utils/storage';
 import { refresh } from './Auth';
 
+const authenticatedConfig = (config: AxiosRequestConfig, token: string) => {
+  return {
+    ...config,
+    headers: {
+      ...config.headers,
+      Authorization: `Bearer ${token}`,
+    },
+  } as AxiosRequestConfig;
+};
+
 export const handleRequest = async (config: AxiosRequestConfig) => {
   const acToken = getLocalStorage(TOKEN_KEY);
   if (config.url?.includes(API_URLS.AUTH.REFRESH)) {
@@ -15,28 +25,14 @@ export const handleRequest = async (config: AxiosRequestConfig) => {
   if (acToken) {
     if (isTokenExpired(acToken)) {
       const newToken = await refresh();
-      if (newToken) {
-        return {
-          ...config,
-          headers: {
-            ...config.headers,
-            Authorization: `Bearer ${newToken}`,
-          },
-        } as AxiosRequestConfig;
-      } else {
+      if (newToken) return authenticatedConfig(config, newToken);
+      else {
         removeLocalStorage(TOKEN_KEY);
         removeLocalStorage(REFRESH_KEY);
-        alert('로그인이 만료되었습니다. 다시 로그인해주세요.');
         location.pathname = ROUTES.SIGNIN;
       }
     }
-    return {
-      ...config,
-      headers: {
-        ...config.headers,
-        Authorization: `Bearer ${acToken}`,
-      },
-    } as AxiosRequestConfig;
+    return authenticatedConfig(config, acToken);
   } else {
     return config;
   }

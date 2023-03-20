@@ -5,32 +5,27 @@ import DailySummary from '../components/Dashboard/DailySummary';
 import InquiryReport from '../components/Dashboard/InquiryReport';
 import PlubRank from '../components/Dashboard/PlubRank';
 import StatisticsChart from '../components/Dashboard/StatisticsChart';
-import { TabTitle } from '../styles/Common';
-import { Container } from './AdminInfo';
 
 const Dashboard = () => {
   return (
-    <Container id='dashboard'>
-      <TabTitle>대시보드</TabTitle>
-      <GridContainer>
-        <GridBox>
-          <Title>회원/모임 현황</Title>
-          <StatisticsChart />
-        </GridBox>
-        <GridBox>
-          <Title>일자별 요약</Title>
-          <DailySummary />
-        </GridBox>
-        <GridBox>
-          <Title>문의/신고</Title>
-          <InquiryReport />
-        </GridBox>
-        <GridBox>
-          <Title>실시간 좋아요 순 플러빙</Title>
-          <PlubRank />
-        </GridBox>
-      </GridContainer>
-    </Container>
+    <GridContainer>
+      <GridBox>
+        <Title>회원/모임 현황</Title>
+        <StatisticsChart />
+      </GridBox>
+      <GridBox>
+        <Title>일자별 요약</Title>
+        <DailySummary />
+      </GridBox>
+      <GridBox>
+        <Title>문의/신고</Title>
+        <InquiryReport />
+      </GridBox>
+      <GridBox>
+        <Title>실시간 좋아요 순 플러빙</Title>
+        <PlubRank />
+      </GridBox>
+    </GridContainer>
   );
 };
 

@@ -1,19 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 
-import { Notice } from '../interfaces/service';
 import { getNoticeList } from './../apis/Service';
+import { QUERYKEY } from './../constants/queryKey';
 
 const useGetNoticeList = () => {
-  const [noticeList, setNoticeList] = useState<Notice[]>();
-
-  const fetchNoticeList = async () => {
-    const data = await getNoticeList();
-    setNoticeList(data);
-  };
-
-  useEffect(() => {
-    fetchNoticeList();
-  }, []);
+  const { data: noticeList } = useQuery(QUERYKEY.NOTICE, getNoticeList);
 
   return { noticeList };
 };
