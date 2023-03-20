@@ -1,20 +1,17 @@
-import styled from '@emotion/styled';
-
 import { TabTitle } from '../styles/Common';
+import { nowCategory } from '../utils/nowPath';
+import { Container } from './AdminInfo';
 
 const Members = () => {
+  const { section, tab } = nowCategory('user');
   return (
     <Container>
-      <TabTitle>회원관리</TabTitle>
+      <TabTitle>
+        {tab}
+        <TabTitle id='sub'>/ {section}</TabTitle>
+      </TabTitle>
     </Container>
   );
 };
 
 export default Members;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 40px 24px;
-  width: 100%;
-`;

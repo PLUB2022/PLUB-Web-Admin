@@ -16,6 +16,12 @@ export const TabTitle = styled.div`
   font-size: 35px;
   font-weight: 700;
   padding: 0px 5px;
+  &#sub {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 400;
+    color: #c4c4c4;
+  }
 `;
 
 export const TextField = styled.input`
