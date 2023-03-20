@@ -7,9 +7,9 @@ export const nowPath = (path: string) => {
   return pathname.includes(path) ? 'now' : '';
 };
 
-export const nowCategory = (category: string) => {
+export const nowCategory = () => {
   const { pathname } = useLocation();
-  const section = menus.find(({ path }) => path.includes(category));
+  const section = menus.find(({ path }) => pathname.includes(path));
   const tab = section?.tabs.find(({ path }) => pathname.includes(path));
 
   return {
