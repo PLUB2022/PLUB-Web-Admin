@@ -13,7 +13,7 @@ export const nowCategory = () => {
   const tab = section?.tabs.find(({ path }) => pathname.includes(path));
 
   return {
-    section: section?.section,
-    tab: tab?.name,
+    section: section?.section || '',
+    tab: tab?.name || '',
   };
 };

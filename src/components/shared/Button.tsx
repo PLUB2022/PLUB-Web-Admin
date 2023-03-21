@@ -1,24 +1,35 @@
 import styled from '@emotion/styled';
 
+import { COLORS } from '../../constants/colors';
+
 interface ButtonProps {
   children: React.ReactNode;
-  bgColor: string;
+  fontSize?: string;
+  color?: string;
+  bgColor?: string;
   width?: string;
+  borderRadius?: string;
   onClick?: () => void;
   disabled?: boolean;
 }
 
 const Button = ({
   children,
+  fontSize,
+  color,
   bgColor,
   width,
+  borderRadius,
   onClick,
   disabled,
 }: ButtonProps) => {
   return (
     <CustomButton
+      fontSize={fontSize || '14px'}
       width={width || '100%'}
-      bgColor={bgColor}
+      color={color || '#fff'}
+      bgColor={bgColor || COLORS.MAIN}
+      borderRadius={borderRadius || '0px'}
       onClick={onClick}
       disabled={disabled}>
       {children}
@@ -28,13 +39,20 @@ const Button = ({
 
 export default Button;
 
-const CustomButton = styled.button<{ width: string; bgColor: string }>`
+const CustomButton = styled.button<{
+  fontSize: string;
+  color: string;
+  width: string;
+  bgColor: string;
+  borderRadius: string;
+}>`
   width: ${({ width }) => width};
-  font-size: 14px;
+  font-size: ${({ fontSize }) => fontSize};
   font-weight: 500;
   padding: 12px;
-  color: #fff;
+  color: ${({ color }) => color};
   background-color: ${({ bgColor }) => bgColor};
   border: none;
+  border-radius: ${({ borderRadius }) => borderRadius};
   cursor: pointer;
 `;

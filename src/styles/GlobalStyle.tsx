@@ -37,8 +37,7 @@ const style = css`
   }
   abbr[title] {
     border-bottom: none;
-    text-decoration: underline;
-    text-decoration: underline dotted;
+    text-decoration: none;
   }
   b,
   strong {
