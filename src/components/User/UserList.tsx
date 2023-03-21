@@ -1,11 +1,13 @@
 import styled from '@emotion/styled';
 
 import Search from './UserList/Search';
+import Table from './UserList/Table';
 
 const UserList = () => {
   return (
     <Container>
       <Search />
+      <Table />
     </Container>
   );
 };

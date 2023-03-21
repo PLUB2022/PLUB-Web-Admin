@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { COLORS } from '../../../constants/colors';
 import { ROUTES } from '../../../constants/routes';
 import useCalendar from '../../../hooks/useCalendar';
+import { SearchBox, SearchTitle, SmallButton } from '../../../styles/Common';
 import Button from '../../shared/Button';
 
 const userTypes = [
@@ -117,14 +118,6 @@ const Search = () => {
 
 export default Search;
 
-const SearchBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 24px;
-  background-color: #fbfbfb;
-  border-radius: 20px;
-`;
-
 const SearchHeader = styled.div`
   display: flex;
   justify-content: space-between;
@@ -138,33 +131,6 @@ const SearchHeader = styled.div`
   &#last {
     width: 400px;
     margin-bottom: 0px;
-  }
-`;
-
-const SearchTitle = styled.div`
-  font-size: 20px;
-  font-weight: 600;
-  width: 100px;
-  &#sub {
-    font-size: 16px;
-  }
-`;
-
-const SmallButton = styled.button`
-  font-size: 14px;
-  padding: 7px 15px;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  background: transparent;
-  color: #8c8c8c;
-  cursor: pointer;
-  &:hover {
-    border: 1px solid #8c8c8c;
-  }
-  &#active {
-    border: 1px solid transparent;
-    color: ${COLORS.MAIN};
-    background: ${COLORS.SUB};
   }
 `;
 

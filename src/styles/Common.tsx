@@ -53,3 +53,51 @@ export const Label = styled.div`
   font-size: 16px;
   margin-top: 10px;
 `;
+
+export const SearchBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background-color: #fbfbfb;
+  border-radius: 20px;
+`;
+
+export const SmallButton = styled.button`
+  font-size: 14px;
+  padding: 7px 15px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: #8c8c8c;
+  cursor: pointer;
+  &:hover {
+    border: 1px solid #8c8c8c;
+  }
+  &#active {
+    border: 1px solid transparent;
+    color: ${COLORS.MAIN};
+    background: ${COLORS.SUB};
+  }
+  &#item {
+    border: 1px solid #8c8c8c;
+    &:hover {
+      border: 1px solid transparent;
+      color: ${COLORS.MAIN};
+      background: ${COLORS.SUB};
+    }
+    &:focus {
+      border: 1px solid transparent;
+      color: ${COLORS.SUB};
+      background: ${COLORS.MAIN};
+    }
+  }
+`;
+
+export const SearchTitle = styled.div`
+  font-size: 20px;
+  font-weight: 600;
+  &#sub {
+    font-size: 16px;
+    width: 100px;
+  }
+`;
