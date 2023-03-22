@@ -17,7 +17,7 @@ export const PlubCalendar = ({ value, onChange }: CalendarProps) => {
   const date = moment(value).format('YYYY-MM-DD');
 
   const handleClick = () => {
-    setCalendar(true);
+    setCalendar(!calendar);
   };
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export const PlubCalendar = ({ value, onChange }: CalendarProps) => {
     <DateBox onClick={handleClick} id={String(calendar)}>
       {date}
       {calendar && (
-        <CalendarBox>
+        <CalendarBox onClick={(e) => e.stopPropagation()}>
           <Calendar
             value={value}
             onChange={onChange}

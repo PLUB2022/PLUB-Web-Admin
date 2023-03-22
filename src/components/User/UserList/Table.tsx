@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 
 import { COLORS } from '../../../constants/colors';
 import { SearchBox, SearchTitle, SmallButton } from '../../../styles/Common';
@@ -103,6 +104,28 @@ const exData: ExData = {
 };
 
 const Table = () => {
+  const [checkList, setCheckList] = useState<number[]>([]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target as HTMLInputElement;
+    if (checked) {
+      setCheckList([...checkList, Number(value)]);
+    } else {
+      setCheckList(checkList.filter((id) => id !== Number(value)));
+    }
+  };
+
+  const allCheck = (e: React.MouseEvent<HTMLInputElement>) => {
+    const { checked } = e.target as HTMLInputElement;
+    if (checked) {
+      setCheckList(exData.data.map(({ id }) => id));
+    } else {
+      setCheckList([]);
+    }
+  };
+
+  const isChecked = (id: number) => checkList.includes(id);
+
   const userStatus = {
     active: '정상',
     ban: '차단',
@@ -121,7 +144,7 @@ const Table = () => {
       </SearchTitle>
       <Controller>
         <CustomRadio>
-          <Radio type='checkbox' name='checkAll' id='all' />
+          <Radio type='checkbox' name='checkAll' id='all' onClick={allCheck} />
           <Label htmlFor='all'>전체</Label>
         </CustomRadio>
         <Buttons>
@@ -148,9 +171,16 @@ const Table = () => {
         <tbody>
           {exData.data.map(
             ({ id, email, nickname, type, status, createdAt }) => (
-              <tr key={id}>
+              <tr key={id} id={String(isChecked(id))}>
                 <td>
-                  <Radio type='checkbox' name='check' id='item' value={id} />
+                  <Radio
+                    type='checkbox'
+                    name='check'
+                    id='item'
+                    value={id}
+                    checked={isChecked(id)}
+                    onChange={handleChange}
+                  />
                 </td>
                 <td>{id}</td>
                 <td id='email'>{email}</td>
@@ -234,6 +264,11 @@ const CustomTable = styled.table`
   margin: 0 auto;
   border-collapse: collapse;
   overflow: hidden;
+  & tr {
+    &#true {
+      background: ${COLORS.SUB};
+    }
+  }
   & th {
     border-top: 2px solid ${COLORS.MAIN};
     padding: 15px 0 10px 0;
