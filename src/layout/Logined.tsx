@@ -1,19 +1,26 @@
 import styled from '@emotion/styled';
 import { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import Header from '../components/Header';
 import SideBar from '../components/SideBar';
+import { ROUTES } from '../constants/routes';
 import { Container, TabTitle } from '../styles/Common';
 import { autoRefresh } from '../utils/autoRefresh';
 import { nowCategory } from '../utils/nowPath';
+import { isLogin } from '../utils/storage';
 
 const Logined = () => {
+  const navigate = useNavigate();
   const { section, tab } = nowCategory();
 
   useEffect(() => {
     const interval = setInterval(autoRefresh, 1000 * 60 * 5);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    !isLogin() && navigate(ROUTES.SIGNIN);
   }, []);
 
   return (
