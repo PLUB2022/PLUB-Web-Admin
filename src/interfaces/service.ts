@@ -12,9 +12,7 @@ export interface CreateNoticeRequest {
 }
 
 export interface NoticeListResponse {
-  pageResponse: {
-    totalElements: number;
-    last: boolean;
-    content: Notice[];
-  };
+  totalElements: number;
+  last: boolean;
+  content: Notice[];
 }
