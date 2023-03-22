@@ -5,10 +5,10 @@ import http from './instance';
 
 export const getNoticeList = async () => {
   try {
-    const { pageResponse }: NoticeListResponse = await http.get(
+    const { content }: NoticeListResponse = await http.get(
       API_URLS.SERVICE.NOTICE.ITEM
     );
-    return pageResponse.content;
+    return content;
   } catch (error) {
     console.error(error);
   }

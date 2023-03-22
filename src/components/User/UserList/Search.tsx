@@ -19,7 +19,7 @@ const Search = () => {
   const [startDate, StartCalendar] = useCalendar(new Date());
   const [endDate, EndCalendar] = useCalendar(new Date());
   const [searchValue, setSearchValue] = useState<string>('');
-  const [userType, setUserType] = useState<string>();
+  const [userType, setUserType] = useState<string>('');
 
   const buttonId = (id: string) => {
     if (userType === id) return 'active';
@@ -46,7 +46,8 @@ const Search = () => {
         '&start=' +
         startDate +
         '&end=' +
-        endDate
+        endDate +
+        '&page=1'
     );
   };
 
