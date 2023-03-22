@@ -2,65 +2,112 @@ import styled from '@emotion/styled';
 
 import { COLORS } from '../../../constants/colors';
 import { SearchBox, SearchTitle, SmallButton } from '../../../styles/Common';
+import Pagination from '../../shared/Pagination';
 
 interface ExData {
-  id: number;
-  email: string;
-  nickname: string;
-  type: 'normal' | 'ban' | 'promotion';
-  status: 'active' | 'ban';
-  createdAt: string;
+  totalCount: number;
+  data: {
+    id: number;
+    email: string;
+    nickname: string;
+    type: 'normal' | 'ban' | 'promotion';
+    status: 'active' | 'ban';
+    createdAt: string;
+  }[];
 }
 
-const exData: ExData[] = [
-  {
-    id: 1,
-    email: 'example@example.com',
-    nickname: '홍길동',
-    type: 'normal',
-    status: 'active',
-    createdAt: '2023-01-01',
-  },
-  {
-    id: 2,
-    email: 'example@example.com',
-    nickname: '이진욱',
-    type: 'normal',
-    status: 'active',
-    createdAt: '2023-01-01',
-  },
-  {
-    id: 3,
-    email: 'example@example.com',
-    nickname: '홍길동',
-    type: 'normal',
-    status: 'ban',
-    createdAt: '2023-01-01',
-  },
-  {
-    id: 4,
-    email: 'example@example.com',
-    nickname: '홍길동',
-    type: 'normal',
-    status: 'active',
-    createdAt: '2023-01-01',
-  },
-  {
-    id: 5,
-    email: 'example@example.com',
-    nickname: '홍길동',
-    type: 'normal',
-    status: 'ban',
-    createdAt: '2023-01-01',
-  },
-];
+const exData: ExData = {
+  totalCount: 158,
+  data: [
+    {
+      id: 1,
+      email: 'example@example.com',
+      nickname: '홍길동',
+      type: 'normal',
+      status: 'active',
+      createdAt: '2023-01-01',
+    },
+    {
+      id: 2,
+      email: 'example@example.com',
+      nickname: '이진욱',
+      type: 'normal',
+      status: 'active',
+      createdAt: '2023-01-01',
+    },
+    {
+      id: 3,
+      email: 'example@example.com',
+      nickname: '홍길동',
+      type: 'normal',
+      status: 'ban',
+      createdAt: '2023-01-01',
+    },
+    {
+      id: 4,
+      email: 'example@example.com',
+      nickname: '홍길동',
+      type: 'normal',
+      status: 'active',
+      createdAt: '2023-01-01',
+    },
+    {
+      id: 5,
+      email: 'example@example.com',
+      nickname: '홍길동',
+      type: 'normal',
+      status: 'ban',
+      createdAt: '2023-01-01',
+    },
+    {
+      id: 6,
+      email: 'example@example.com',
+      nickname: '홍길동',
+      type: 'normal',
+      status: 'active',
+      createdAt: '2023-01-01',
+    },
+    {
+      id: 7,
+      email: 'example@example.com',
+      nickname: '이진욱',
+      type: 'normal',
+      status: 'active',
+      createdAt: '2023-01-01',
+    },
+    {
+      id: 8,
+      email: 'example@example.com',
+      nickname: '홍길동',
+      type: 'normal',
+      status: 'ban',
+      createdAt: '2023-01-01',
+    },
+    {
+      id: 9,
+      email: 'example@example.com',
+      nickname: '홍길동',
+      type: 'normal',
+      status: 'active',
+      createdAt: '2023-01-01',
+    },
+    {
+      id: 10,
+      email: 'example@example.com',
+      nickname: '홍길동',
+      type: 'normal',
+      status: 'ban',
+      createdAt: '2023-01-01',
+    },
+  ],
+};
 
 const Table = () => {
-  const status = {
+  const userStatus = {
     active: '정상',
     ban: '차단',
   };
-  const type = {
+  const userType = {
     normal: '일반 회원',
     ban: '차단 회원',
     promotion: '광고업체',
@@ -69,8 +116,8 @@ const Table = () => {
   return (
     <SearchBox>
       <SearchTitle>
-        검색 결과&nbsp; <span style={{ color: COLORS.MAIN }}>5</span>
-        <span style={{ color: '#c4c4c4' }}> / 총 5명 검색 결과</span>
+        검색 결과&nbsp; <span style={{ color: COLORS.MAIN }}>10</span>
+        <span style={{ color: '#c4c4c4' }}> / 총 10명 검색 결과</span>
       </SearchTitle>
       <Controller>
         <CustomRadio>
@@ -99,21 +146,24 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {exData.map((data) => (
-            <tr key={data.id}>
-              <td>
-                <Radio type='checkbox' name='check' id='item' value={data.id} />
-              </td>
-              <td>{data.id}</td>
-              <td id='email'>{data.email}</td>
-              <td>{data.nickname}</td>
-              <td>{type[data.type]}</td>
-              <td id={data.status}>{status[data.status]}</td>
-              <td>{data.createdAt}</td>
-            </tr>
-          ))}
+          {exData.data.map(
+            ({ id, email, nickname, type, status, createdAt }) => (
+              <tr key={id}>
+                <td>
+                  <Radio type='checkbox' name='check' id='item' value={id} />
+                </td>
+                <td>{id}</td>
+                <td id='email'>{email}</td>
+                <td>{nickname}</td>
+                <td>{userType[type]}</td>
+                <td id={status}>{userStatus[status]}</td>
+                <td id='date'>{createdAt}</td>
+              </tr>
+            )
+          )}
         </tbody>
       </CustomTable>
+      <Pagination count={exData.totalCount} />
     </SearchBox>
   );
 };
@@ -200,7 +250,10 @@ const CustomTable = styled.table`
       color: ${COLORS.ERROR};
     }
     &#email {
-      width: 30%;
+      width: 25%;
+    }
+    &#date {
+      width: 20%;
     }
   }
 `;
