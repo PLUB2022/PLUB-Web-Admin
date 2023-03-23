@@ -6,99 +6,99 @@ import { SearchBox, SearchTitle, SmallButton } from '../../../styles/Common';
 import Pagination from '../../shared/Pagination';
 
 interface ExData {
-  totalCount: number;
+  totalElements: number;
   data: {
-    id: number;
+    accountId: number;
     email: string;
     nickname: string;
-    type: 'normal' | 'ban' | 'promotion';
+    role: 'normal' | 'ban' | 'promotion';
     status: 'active' | 'ban';
-    createdAt: string;
+    joinDate: string;
   }[];
 }
 
 const exData: ExData = {
-  totalCount: 158,
+  totalElements: 158,
   data: [
     {
-      id: 1,
+      accountId: 1,
       email: 'example@example.com',
       nickname: '홍길동',
-      type: 'normal',
+      role: 'normal',
       status: 'active',
-      createdAt: '2023-01-01',
+      joinDate: '2023-01-01',
     },
     {
-      id: 2,
+      accountId: 2,
       email: 'example@example.com',
       nickname: '이진욱',
-      type: 'normal',
+      role: 'normal',
       status: 'active',
-      createdAt: '2023-01-01',
+      joinDate: '2023-01-01',
     },
     {
-      id: 3,
+      accountId: 3,
       email: 'example@example.com',
       nickname: '홍길동',
-      type: 'normal',
+      role: 'normal',
       status: 'ban',
-      createdAt: '2023-01-01',
+      joinDate: '2023-01-01',
     },
     {
-      id: 4,
+      accountId: 4,
       email: 'example@example.com',
       nickname: '홍길동',
-      type: 'normal',
+      role: 'normal',
       status: 'active',
-      createdAt: '2023-01-01',
+      joinDate: '2023-01-01',
     },
     {
-      id: 5,
+      accountId: 5,
       email: 'example@example.com',
       nickname: '홍길동',
-      type: 'normal',
+      role: 'normal',
       status: 'ban',
-      createdAt: '2023-01-01',
+      joinDate: '2023-01-01',
     },
     {
-      id: 6,
+      accountId: 6,
       email: 'example@example.com',
       nickname: '홍길동',
-      type: 'normal',
+      role: 'normal',
       status: 'active',
-      createdAt: '2023-01-01',
+      joinDate: '2023-01-01',
     },
     {
-      id: 7,
+      accountId: 7,
       email: 'example@example.com',
       nickname: '이진욱',
-      type: 'normal',
+      role: 'normal',
       status: 'active',
-      createdAt: '2023-01-01',
+      joinDate: '2023-01-01',
     },
     {
-      id: 8,
+      accountId: 8,
       email: 'example@example.com',
       nickname: '홍길동',
-      type: 'normal',
+      role: 'normal',
       status: 'ban',
-      createdAt: '2023-01-01',
+      joinDate: '2023-01-01',
     },
     {
-      id: 9,
+      accountId: 9,
       email: 'example@example.com',
       nickname: '홍길동',
-      type: 'normal',
+      role: 'normal',
       status: 'active',
-      createdAt: '2023-01-01',
+      joinDate: '2023-01-01',
     },
     {
-      id: 10,
+      accountId: 10,
       email: 'example@example.com',
       nickname: '홍길동',
-      type: 'normal',
+      role: 'normal',
       status: 'ban',
-      createdAt: '2023-01-01',
+      joinDate: '2023-01-01',
     },
   ],
 };
@@ -118,7 +118,7 @@ const Table = () => {
   const allCheck = (e: React.MouseEvent<HTMLInputElement>) => {
     const { checked } = e.target as HTMLInputElement;
     if (checked) {
-      setCheckList(exData.data.map(({ id }) => id));
+      setCheckList(exData.data.map(({ accountId }) => accountId));
     } else {
       setCheckList([]);
     }
@@ -130,7 +130,7 @@ const Table = () => {
     active: '정상',
     ban: '차단',
   };
-  const userType = {
+  const userRole = {
     normal: '일반 회원',
     ban: '차단 회원',
     promotion: '광고업체',
@@ -170,30 +170,30 @@ const Table = () => {
         </thead>
         <tbody>
           {exData.data.map(
-            ({ id, email, nickname, type, status, createdAt }) => (
-              <tr key={id} id={String(isChecked(id))}>
+            ({ accountId, email, nickname, role, status, joinDate }) => (
+              <tr key={accountId} id={String(isChecked(accountId))}>
                 <td>
                   <Radio
                     type='checkbox'
                     name='check'
                     id='item'
-                    value={id}
-                    checked={isChecked(id)}
+                    value={accountId}
+                    checked={isChecked(accountId)}
                     onChange={handleChange}
                   />
                 </td>
-                <td>{id}</td>
+                <td>{accountId}</td>
                 <td id='email'>{email}</td>
                 <td>{nickname}</td>
-                <td>{userType[type]}</td>
+                <td>{userRole[role]}</td>
                 <td id={status}>{userStatus[status]}</td>
-                <td id='date'>{createdAt}</td>
+                <td id='date'>{joinDate}</td>
               </tr>
             )
           )}
         </tbody>
       </CustomTable>
-      <Pagination count={exData.totalCount} />
+      <Pagination count={exData.totalElements} />
     </SearchBox>
   );
 };

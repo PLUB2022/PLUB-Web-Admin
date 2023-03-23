@@ -9,6 +9,10 @@ export const API_URLS = {
     WEEKLY_SUMMARY: '/admin/weekly-summary',
     PLUBBING_RANKING: '/admin/plubbing-ranking',
   },
+  USER: {
+    LIST: '/accounts',
+    SEARCH: '/accounts/search',
+  },
   SERVICE: {
     NOTICE: {
       ITEM: '/announcements',
