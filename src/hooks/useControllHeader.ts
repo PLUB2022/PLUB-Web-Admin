@@ -5,7 +5,7 @@ import { ROUTES } from './../constants/routes';
 
 const useControllerHeader = () => {
   const { pathname } = useLocation();
-  const isLoginPage = pathname === '/';
+  const isLoginPage = pathname === ROUTES.SIGNIN;
 
   const handleLogout = async () => {
     logout();
