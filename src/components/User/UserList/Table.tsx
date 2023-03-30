@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { COLORS } from '../../../constants/colors';
 import { SearchBox, SearchTitle, SmallButton } from '../../../styles/Common';
@@ -135,6 +135,16 @@ const Table = () => {
     ban: '차단 회원',
     promotion: '광고업체',
   };
+
+  useEffect(() => {
+    const all = document.getElementById('all') as HTMLInputElement;
+
+    if (checkList.length === exData.data.length) {
+      all.checked = true;
+    } else {
+      all.checked = false;
+    }
+  }, [checkList]);
 
   return (
     <SearchBox>
