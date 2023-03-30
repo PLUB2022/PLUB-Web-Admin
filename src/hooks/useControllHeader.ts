@@ -8,7 +8,7 @@ const useControllerHeader = () => {
   const isLoginPage = pathname === ROUTES.SIGNIN;
 
   const handleLogout = async () => {
-    logout();
+    await logout();
     location.pathname = ROUTES.SIGNIN;
   };
 
