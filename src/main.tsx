@@ -8,6 +8,7 @@ import GlobalStyle from './styles/GlobalStyle';
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
+      suspense: true,
       refetchOnWindowFocus: false,
     },
   },
