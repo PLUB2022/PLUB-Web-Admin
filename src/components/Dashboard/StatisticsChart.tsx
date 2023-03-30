@@ -1,11 +1,12 @@
+import { useQuery } from 'react-query';
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 
-import useGetStatistics from '../../hooks/useGetStatistics';
+import { getDashboardStats } from '../../apis/Dashboard';
+import { QUERYKEY } from '../../constants/queryKey';
 
 const StatisticsChart = () => {
-  const { statistics, isLoading } = useGetStatistics();
+  const { data: statistics } = useQuery(QUERYKEY.STATISTICS, getDashboardStats);
 
-  if (isLoading || !statistics) return <div>로딩중</div>;
   return (
     <LineChart
       margin={{ top: 0, left: -20, right: 0, bottom: 0 }}
