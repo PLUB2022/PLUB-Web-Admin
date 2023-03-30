@@ -53,7 +53,7 @@ const DateBox = styled.div`
   background: transparent;
   padding: 7px 25px;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 1.4rem;
   cursor: default;
   transition: border 0.3s ease-in-out;
   &:hover {

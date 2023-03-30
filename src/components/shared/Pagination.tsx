@@ -90,10 +90,11 @@ const Arrows = styled.button`
   display: flex;
   align-items: center;
   gap: 15px;
-  font-size: 14px;
+  font-size: 1.4rem;
 `;
 
 const Page = styled.button`
+  font-size: 1.6rem;
   background-color: transparent;
   border: none;
   border-radius: 6px;

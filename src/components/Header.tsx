@@ -52,11 +52,12 @@ const AuthBox = styled.div`
 `;
 
 const Logo = styled.div`
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 700;
 `;
 
 const NavLink = styled.div`
+  font-size: 1.6rem;
   font-weight: 400;
   margin: 0px 10px;
   cursor: pointer;

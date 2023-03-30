@@ -52,18 +52,18 @@ const Table = styled.table`
 
 const Td = styled.td`
   padding: 16px 8px;
-  font-size: 18px;
+  font-size: 1.8rem;
   &#data {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 700;
   }
 `;
 
 const Modify = styled.button`
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 700;
   padding: 4px 8px;
   color: ${COLORS.MAIN};

@@ -13,7 +13,7 @@ const StatisticsChart = () => {
       height={260}
       data={statistics}>
       <XAxis
-        fontSize={8.75}
+        fontSize={'0.875rem'}
         dataKey='date'
         tick={{ fill: '#A3A3A3' }}
         tickSize={0}
@@ -21,7 +21,7 @@ const StatisticsChart = () => {
       />
       <YAxis
         tick={{ fill: '#A3A3A3' }}
-        fontSize={8.75}
+        fontSize={'0.875rem'}
         tickSize={0}
         tickMargin={8.8}
         domain={[20, 80]}

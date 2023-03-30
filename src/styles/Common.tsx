@@ -13,11 +13,11 @@ export const Container = styled.div`
 `;
 
 export const TabTitle = styled.div`
-  font-size: 35px;
+  font-size: 3.5rem;
   font-weight: 700;
   &#sub {
     display: inline-block;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 400;
     color: ${COLORS.MEDIUM_GRAY};
   }
@@ -50,7 +50,7 @@ export const Modal = styled.div`
 `;
 
 export const Label = styled.div`
-  font-size: 16px;
+  font-size: 1.6rem;
   margin-top: 10px;
 `;
 
@@ -63,7 +63,7 @@ export const SearchBox = styled.div`
 `;
 
 export const SmallButton = styled.button`
-  font-size: 14px;
+  font-size: 1.4rem;
   padding: 7px 15px;
   border: 1px solid transparent;
   border-radius: 10px;
@@ -94,10 +94,10 @@ export const SmallButton = styled.button`
 `;
 
 export const SearchTitle = styled.div`
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 600;
   &#sub {
-    font-size: 16px;
+    font-size: 1.6rem;
     width: 100px;
   }
 `;

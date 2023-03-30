@@ -33,6 +33,7 @@ const PlubRank = () => {
 export default PlubRank;
 
 const Container = styled.div`
+  font-size: 1.6rem;
   display: flex;
   gap: 40px;
 `;

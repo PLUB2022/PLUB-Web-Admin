@@ -10,8 +10,7 @@ import Button from '../../shared/Button';
 
 const userTypes = [
   { id: 'normal', name: '일반 회원' },
-  { id: 'ban', name: '차단 회원' },
-  { id: 'promotion', name: '광고업체' },
+  { id: 'promotion', name: '광고 업체' },
 ];
 
 const Search = () => {
@@ -63,7 +62,7 @@ const Search = () => {
         <SearchTitle>회원검색</SearchTitle>
         <Button
           width='130px'
-          fontSize='16px'
+          fontSize='1.6rem'
           borderRadius='10px'
           onClick={handleSearch}>
           검색
@@ -75,7 +74,8 @@ const Search = () => {
           style={{
             display: 'flex',
             width: '260px',
-            justifyContent: 'space-between',
+            justifyContent: 'flex-start',
+            gap: '10px',
           }}>
           {userTypes.map(({ id, name }) => (
             <SmallButton
@@ -140,7 +140,7 @@ const SearchInput = styled.input`
   padding: 7px 15px;
   border: 1px solid ${COLORS.DEEP_GRAY};
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 1.4rem;
   background: transparent;
   &::placeholder {
     color: ${COLORS.DEEP_GRAY};

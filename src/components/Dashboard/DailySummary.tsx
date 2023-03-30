@@ -51,6 +51,7 @@ export default DailySummary;
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
+  font-size: 1.6rem;
 `;
 
 const Tr = styled.tr`

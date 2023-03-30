@@ -11,7 +11,7 @@ interface ExData {
     accountId: number;
     email: string;
     nickname: string;
-    role: 'normal' | 'ban' | 'promotion';
+    role: 'normal' | 'promotion';
     status: 'active' | 'ban';
     joinDate: string;
   }[];
@@ -132,8 +132,7 @@ const Table = () => {
   };
   const userRole = {
     normal: '일반 회원',
-    ban: '차단 회원',
-    promotion: '광고업체',
+    promotion: '광고 업체',
   };
 
   useEffect(() => {
@@ -262,6 +261,7 @@ const Radio = styled.input`
 const Label = styled.label`
   cursor: pointer;
   color: ${COLORS.DEEP_GRAY};
+  font-size: 1.6rem;
 `;
 
 const Buttons = styled.div`
@@ -271,6 +271,7 @@ const Buttons = styled.div`
 
 const CustomTable = styled.table`
   width: 100%;
+  font-size: 1.6rem;
   margin: 0 auto;
   border-collapse: collapse;
   overflow: hidden;
