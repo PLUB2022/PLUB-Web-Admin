@@ -138,12 +138,12 @@ const SearchHeader = styled.div`
 const SearchInput = styled.input`
   width: 100%;
   padding: 7px 15px;
-  border: 1px solid #8c8c8c;
+  border: 1px solid ${COLORS.DEEP_GRAY};
   border-radius: 10px;
   font-size: 14px;
   background: transparent;
   &::placeholder {
-    color: #8c8c8c;
+    color: ${COLORS.DEEP_GRAY};
     font-weight: 400;
   }
   &:focus {

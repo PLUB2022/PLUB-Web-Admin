@@ -19,13 +19,13 @@ export const TabTitle = styled.div`
     display: inline-block;
     font-size: 20px;
     font-weight: 400;
-    color: #c4c4c4;
+    color: ${COLORS.MEDIUM_GRAY};
   }
 `;
 
 export const TextField = styled.input`
   width: 100%;
-  border: 1px solid #c4c4c4;
+  border: 1px solid ${COLORS.MEDIUM_GRAY};
   border-radius: 10px;
   padding: 12px 16px;
   margin: 8px 0;
@@ -68,10 +68,10 @@ export const SmallButton = styled.button`
   border: 1px solid transparent;
   border-radius: 10px;
   background: transparent;
-  color: #8c8c8c;
+  color: ${COLORS.DEEP_GRAY};
   cursor: pointer;
   &:hover {
-    border: 1px solid #8c8c8c;
+    border: 1px solid ${COLORS.DEEP_GRAY};
   }
   &#active {
     border: 1px solid transparent;
@@ -79,7 +79,7 @@ export const SmallButton = styled.button`
     background: ${COLORS.SUB};
   }
   &#item {
-    border: 1px solid #8c8c8c;
+    border: 1px solid ${COLORS.DEEP_GRAY};
     &:hover {
       border: 1px solid transparent;
       color: ${COLORS.MAIN};

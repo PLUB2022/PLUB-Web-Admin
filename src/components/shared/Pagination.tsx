@@ -81,11 +81,11 @@ const Container = styled.div`
 `;
 
 const Arrows = styled.button`
-  background-color: #f2f3f4;
+  background-color: ${COLORS.LIGHT_GRAY};
   border: none;
   border-radius: 6px;
   padding: 8px 10px;
-  color: #8c8c8c;
+  color: ${COLORS.DEEP_GRAY};
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -98,12 +98,12 @@ const Page = styled.button`
   border: none;
   border-radius: 6px;
   padding: 8px 10px;
-  color: #8c8c8c;
+  color: ${COLORS.DEEP_GRAY};
   cursor: pointer;
   &:hover {
     color: ${COLORS.MAIN};
     &#dots {
-      color: #8c8c8c;
+      color: ${COLORS.DEEP_GRAY};
       cursor: default;
     }
   }

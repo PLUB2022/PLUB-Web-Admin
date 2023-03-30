@@ -55,7 +55,7 @@ const Table = styled.table`
 
 const Tr = styled.tr`
   text-align: center;
-  background: #f2f3f4;
+  background: ${COLORS.LIGHT_GRAY};
   &#weekTotal {
     background: ${COLORS.SUB};
   }

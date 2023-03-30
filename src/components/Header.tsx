@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import { COLORS } from '../constants/colors';
 import useControllerHeader from '../hooks/useControllHeader';
 
 const Header = () => {
@@ -61,6 +62,6 @@ const NavLink = styled.div`
   cursor: pointer;
   &#logout {
     font-weight: 700;
-    color: #f75b2b;
+    color: ${COLORS.ERROR};
   }
 `;

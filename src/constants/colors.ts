@@ -1,5 +1,8 @@
 export const COLORS = {
   MAIN: '#5F5FF9',
   SUB: '#E1E1FA',
+  DEEP_GRAY: '#8C8C8C',
+  MEDIUM_GRAY: '#C4C4C4',
+  LIGHT_GRAY: '#F2F3F4',
   ERROR: '#F75B2B',
 };

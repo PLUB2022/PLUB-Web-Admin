@@ -150,7 +150,7 @@ const Table = () => {
     <SearchBox>
       <SearchTitle>
         검색 결과&nbsp; <span style={{ color: COLORS.MAIN }}>10</span>
-        <span style={{ color: '#c4c4c4' }}> / 총 10명 검색 결과</span>
+        <span style={{ color: COLORS.MEDIUM_GRAY }}> / 총 10명 검색 결과</span>
       </SearchTitle>
       <Controller>
         <CustomRadio>
@@ -225,7 +225,7 @@ const CustomRadio = styled.div`
 
 const Radio = styled.input`
   appearance: none;
-  border: 1px solid #8c8c8c;
+  border: 1px solid ${COLORS.DEEP_GRAY};
   width: 18px;
   height: 18px;
   border-radius: 5px;
@@ -261,7 +261,7 @@ const Radio = styled.input`
 
 const Label = styled.label`
   cursor: pointer;
-  color: #8c8c8c;
+  color: ${COLORS.DEEP_GRAY};
 `;
 
 const Buttons = styled.div`
@@ -287,10 +287,10 @@ const CustomTable = styled.table`
     font-weight: 600;
   }
   & td {
-    border-bottom: 1px solid #f2f3f4;
+    border-bottom: 1px solid ${COLORS.LIGHT_GRAY};
     padding: 15px 0;
     text-align: center;
-    color: #8c8c8c;
+    color: ${COLORS.DEEP_GRAY};
     &#ban {
       color: ${COLORS.ERROR};
     }
