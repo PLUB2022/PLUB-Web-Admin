@@ -45,7 +45,7 @@ const Menu = styled.div`
 const Section = styled.div`
   display: inline-block;
   padding: 8px 24px;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 600;
   cursor: pointer;
   &#now {
@@ -58,7 +58,7 @@ const Section = styled.div`
 
 const Tab = styled.div`
   padding: 8px 24px;
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: 500;
   cursor: pointer;
   &#now {

@@ -49,11 +49,11 @@ export const PlubCalendar = ({ value, onChange }: CalendarProps) => {
 
 const DateBox = styled.div`
   position: relative;
-  border: 1px solid #8c8c8c;
+  border: 1px solid ${COLORS.DEEP_GRAY};
   background: transparent;
   padding: 7px 25px;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 1.4rem;
   cursor: default;
   transition: border 0.3s ease-in-out;
   &:hover {

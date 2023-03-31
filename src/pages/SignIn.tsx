@@ -45,14 +45,14 @@ const InputBox = styled.div`
 `;
 
 const Label = styled.div`
-  font-size: 16px;
+  font-size: 1.6rem;
   margin-top: 10px;
 `;
 
 const Button = styled.button`
   width: 100%;
   padding: 12px;
-  font-size: 20px;
+  font-size: 2rem;
   border: none;
   border-radius: 10px;
   color: #fff;

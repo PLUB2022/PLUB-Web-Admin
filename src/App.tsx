@@ -5,7 +5,7 @@ import Logined from './layout/Logined';
 import NotLogined from './layout/NotLogined';
 import AdminInfo from './pages/AdminInfo';
 import Dashboard from './pages/Dashboard';
-import Notice from './pages/Notice';
+import Service from './pages/Service';
 import SignIn from './pages/SignIn';
 import User from './pages/User';
 
@@ -29,9 +29,12 @@ const App = () => {
           <Route path={ROUTES.MANAGE.MARKETING.EVENT} element={<User />} />
           <Route path={ROUTES.MANAGE.STATISTICS.USER} element={<User />} />
           <Route path={ROUTES.MANAGE.STATISTICS.GROUP} element={<User />} />
-          <Route path={ROUTES.MANAGE.SERVICE.INQUIRY} element={<User />} />
-          <Route path={ROUTES.MANAGE.SERVICE.NOTICE} element={<Notice />} />
-          <Route path={ROUTES.MANAGE.SERVICE.EVALUATION} element={<User />} />
+          <Route path={ROUTES.MANAGE.SERVICE.INQUIRY} element={<Service />} />
+          <Route path={ROUTES.MANAGE.SERVICE.NOTICE} element={<Service />} />
+          <Route
+            path={ROUTES.MANAGE.SERVICE.EVALUATION}
+            element={<Service />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

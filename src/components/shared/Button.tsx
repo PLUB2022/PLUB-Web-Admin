@@ -25,7 +25,7 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <CustomButton
-      fontSize={fontSize || '14px'}
+      fontSize={fontSize || '1.4rem'}
       width={width || '100%'}
       color={color || '#fff'}
       bgColor={bgColor || COLORS.MAIN}

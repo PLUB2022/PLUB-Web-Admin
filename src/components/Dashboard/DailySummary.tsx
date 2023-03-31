@@ -1,11 +1,16 @@
 import styled from '@emotion/styled';
+import { useQuery } from 'react-query';
 
+import { getWeeklySummary } from '../../apis/Dashboard';
 import { COLORS } from '../../constants/colors';
-import useGetWeeklySummary from '../../hooks/useGetWeeklySummary';
+import { QUERYKEY } from '../../constants/queryKey';
 
 const DailySummary = () => {
-  const { weeklySummary, isLoading } = useGetWeeklySummary();
-  if (isLoading || !weeklySummary) return <div>로딩중</div>;
+  const { data: weeklySummary } = useQuery(
+    QUERYKEY.WEEKLYSUMMARY,
+    getWeeklySummary
+  );
+
   return (
     <Table>
       <tbody>
@@ -16,7 +21,7 @@ const DailySummary = () => {
           <Td>문의 수</Td>
           <Td>신고 수</Td>
         </Tr>
-        {weeklySummary.week.map(
+        {weeklySummary?.week.map(
           ({ plubbings, accounts, inquires, reports, date }) => (
             <Tr key={date}>
               <Td id='date'>{date}</Td>
@@ -29,17 +34,17 @@ const DailySummary = () => {
         )}
         <Tr id='weekTotal'>
           <Td id='date'>최근 7일 합계</Td>
-          <Td>{weeklySummary.weeklyTotalPlubbings}</Td>
-          <Td>{weeklySummary.weeklyTotalAccounts}</Td>
-          <Td>{weeklySummary.weeklyTotalInquires}</Td>
-          <Td>{weeklySummary.weeklyTotalReports}</Td>
+          <Td>{weeklySummary?.weeklyTotalPlubbings}</Td>
+          <Td>{weeklySummary?.weeklyTotalAccounts}</Td>
+          <Td>{weeklySummary?.weeklyTotalInquires}</Td>
+          <Td>{weeklySummary?.weeklyTotalReports}</Td>
         </Tr>
         <Tr id='monthTotal'>
           <Td id='date'>이번달 합계</Td>
-          <Td>{weeklySummary.monthlyTotalPlubbings}</Td>
-          <Td>{weeklySummary.monthlyTotalAccounts}</Td>
-          <Td>{weeklySummary.monthlyTotalInquires}</Td>
-          <Td>{weeklySummary.monthlyTotalReports}</Td>
+          <Td>{weeklySummary?.monthlyTotalPlubbings}</Td>
+          <Td>{weeklySummary?.monthlyTotalAccounts}</Td>
+          <Td>{weeklySummary?.monthlyTotalInquires}</Td>
+          <Td>{weeklySummary?.monthlyTotalReports}</Td>
         </Tr>
       </tbody>
     </Table>
@@ -51,11 +56,12 @@ export default DailySummary;
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
+  font-size: 1.6rem;
 `;
 
 const Tr = styled.tr`
   text-align: center;
-  background: #f2f3f4;
+  background: ${COLORS.LIGHT_GRAY};
   &#weekTotal {
     background: ${COLORS.SUB};
   }

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import { COLORS } from '../constants/colors';
 import useControllerHeader from '../hooks/useControllHeader';
 
 const Header = () => {
@@ -51,16 +52,17 @@ const AuthBox = styled.div`
 `;
 
 const Logo = styled.div`
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 700;
 `;
 
 const NavLink = styled.div`
+  font-size: 1.6rem;
   font-weight: 400;
   margin: 0px 10px;
   cursor: pointer;
   &#logout {
     font-weight: 700;
-    color: #f75b2b;
+    color: ${COLORS.ERROR};
   }
 `;

@@ -25,6 +25,7 @@ const InquiryReport = () => {
 export default InquiryReport;
 
 export const Row = styled.div`
+  font-size: 1.6rem;
   padding: 8px;
 `;
 
