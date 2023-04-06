@@ -1,5 +1,13 @@
 export const ROUTES = {
   SIGNIN: '/',
+  POLICIES: {
+    ROOT: '/policies',
+    TERMS: '/policies/terms',
+    PERSONAL: '/policies/personal',
+    LOCATION: '/policies/location',
+    AGE: '/policies/age',
+    MARKETING: '/policies/marketing',
+  },
   MANAGE: {
     ACCOUNT: { ROOT: '/manage/account' },
     DASHBOARD: { ROOT: '/manage/dashboard' },
