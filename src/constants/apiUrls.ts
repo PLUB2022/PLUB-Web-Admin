@@ -19,4 +19,11 @@ export const API_URLS = {
       DETAIL: (id: number) => `/announcements/${id}`,
     },
   },
+  POLICY: {
+    TEMRS: '/policies/terms',
+    PERSONAL: '/policies/personal',
+    LOCATION: '/policies/location',
+    AGE: '/policies/age',
+    MARKETING: '/policies/marketing',
+  },
 };
