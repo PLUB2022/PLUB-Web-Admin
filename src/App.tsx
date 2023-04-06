@@ -5,6 +5,7 @@ import Logined from './layout/Logined';
 import NotLogined from './layout/NotLogined';
 import AdminInfo from './pages/AdminInfo';
 import Dashboard from './pages/Dashboard';
+import Policies from './pages/Policies';
 import Service from './pages/Service';
 import SignIn from './pages/SignIn';
 import User from './pages/User';
@@ -36,6 +37,11 @@ const App = () => {
             element={<Service />}
           />
         </Route>
+        <Route path={ROUTES.POLICIES.TERMS} element={<Policies />} />
+        <Route path={ROUTES.POLICIES.PERSONAL} element={<Policies />} />
+        <Route path={ROUTES.POLICIES.LOCATION} element={<Policies />} />
+        <Route path={ROUTES.POLICIES.AGE} element={<Policies />} />
+        <Route path={ROUTES.POLICIES.MARKETING} element={<Policies />} />
       </Routes>
     </BrowserRouter>
   );

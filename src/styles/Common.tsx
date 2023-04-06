@@ -27,6 +27,7 @@ export const TextField = styled.input`
   width: 100%;
   border: 1px solid ${COLORS.MEDIUM_GRAY};
   border-radius: 10px;
+  font-size: 1.6rem;
   padding: 12px 16px;
   margin: 8px 0;
   &#gray {

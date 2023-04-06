@@ -1,48 +1,46 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
 
-import { adminInfo, canChange } from '../../constants/adminInfo';
 import { COLORS } from '../../constants/colors';
-import { AdminInfo } from '../../interfaces/adminInfo';
-import ResetPassword from './resetPassword';
-import ResetPhone from './resetPhone';
 
-const exData: AdminInfo = {
-  userId: 'ADMIN1234',
-  name: '관리자',
-  level: '일반관리자',
-  phone: '01012345678',
-};
+interface InfoTableProps {
+  modalOn: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
 
-const InfoTable = () => {
-  const [modal, setModal] = useState<string>('');
-  const modalOff = () => setModal('');
-
-  const modify = (key: string) => {
-    const modalOn = () => setModal(key);
-    const change = canChange.includes(key);
-    return change && <Modify onClick={modalOn}>변경</Modify>;
-  };
-  return (
-    <>
-      <Table>
-        <tbody>
-          {adminInfo(exData).map(({ key, value }) => (
-            <tr key={key}>
-              <Td>{key}</Td>
-              <Td id='data'>
-                {value}
-                {modify(key)}
-              </Td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-      {modal === '비밀번호' && <ResetPassword modalOff={modalOff} />}
-      {modal === '연락처' && <ResetPhone modalOff={modalOff} />}
-    </>
-  );
-};
+const InfoTable = ({ modalOn }: InfoTableProps) => (
+  <Table>
+    <tbody>
+      <tr>
+        <Td>아이디</Td>
+        <Td id='data'>ADMIN12345</Td>
+      </tr>
+      <tr>
+        <Td>비밀번호</Td>
+        <Td id='data'>
+          <Modify id='password' onClick={modalOn}>
+            변경
+          </Modify>
+        </Td>
+      </tr>
+      <tr>
+        <Td>이름</Td>
+        <Td id='data'>관리자 </Td>
+      </tr>
+      <tr>
+        <Td>연락처</Td>
+        <Td id='data'>
+          01012345678
+          <Modify id='phone' onClick={modalOn}>
+            변경
+          </Modify>
+        </Td>
+      </tr>
+      <tr>
+        <Td>관리자등급</Td>
+        <Td id='data'>일반관리자 </Td>
+      </tr>
+    </tbody>
+  </Table>
+);
 
 export default InfoTable;
 
