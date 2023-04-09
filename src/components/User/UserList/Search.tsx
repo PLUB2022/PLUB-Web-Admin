@@ -42,9 +42,9 @@ const Search = () => {
         searchValue +
         '&type=' +
         userType +
-        '&start=' +
+        '&startedAt=' +
         startDate +
-        '&end=' +
+        '&endedAt=' +
         endDate +
         '&page=1'
     );

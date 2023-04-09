@@ -5,7 +5,7 @@ import http from './instance';
 interface UserListParams {
   page: number;
   size: number;
-  sort: string;
+  sort?: string;
   keyword?: string;
   startedAt?: string;
   endedAt?: string;

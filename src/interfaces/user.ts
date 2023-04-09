@@ -2,8 +2,8 @@ export interface User {
   accountId: number;
   email: string;
   nickname: string;
-  role: string;
-  status: string;
+  role: 'ROLE_USER' | 'ROLE_ADMIN';
+  status: 'NORMAL' | 'BAN';
   joinDate: string;
 }
 

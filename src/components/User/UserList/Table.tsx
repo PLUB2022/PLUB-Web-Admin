@@ -1,109 +1,22 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 
+import { userList } from '../../../apis/User';
 import { COLORS } from '../../../constants/colors';
+import useGetParams from '../../../hooks/useGetParams';
 import { SearchBox, SearchTitle, SmallButton } from '../../../styles/Common';
 import Pagination from '../../shared/Pagination';
 
-interface ExData {
-  totalElements: number;
-  data: {
-    accountId: number;
-    email: string;
-    nickname: string;
-    role: 'normal' | 'promotion';
-    status: 'active' | 'ban';
-    joinDate: string;
-  }[];
-}
-
-const exData: ExData = {
-  totalElements: 158,
-  data: [
-    {
-      accountId: 1,
-      email: 'example@example.com',
-      nickname: '홍길동',
-      role: 'normal',
-      status: 'active',
-      joinDate: '2023-01-01',
-    },
-    {
-      accountId: 2,
-      email: 'example@example.com',
-      nickname: '이진욱',
-      role: 'normal',
-      status: 'active',
-      joinDate: '2023-01-01',
-    },
-    {
-      accountId: 3,
-      email: 'example@example.com',
-      nickname: '홍길동',
-      role: 'normal',
-      status: 'ban',
-      joinDate: '2023-01-01',
-    },
-    {
-      accountId: 4,
-      email: 'example@example.com',
-      nickname: '홍길동',
-      role: 'normal',
-      status: 'active',
-      joinDate: '2023-01-01',
-    },
-    {
-      accountId: 5,
-      email: 'example@example.com',
-      nickname: '홍길동',
-      role: 'normal',
-      status: 'ban',
-      joinDate: '2023-01-01',
-    },
-    {
-      accountId: 6,
-      email: 'example@example.com',
-      nickname: '홍길동',
-      role: 'normal',
-      status: 'active',
-      joinDate: '2023-01-01',
-    },
-    {
-      accountId: 7,
-      email: 'example@example.com',
-      nickname: '이진욱',
-      role: 'normal',
-      status: 'active',
-      joinDate: '2023-01-01',
-    },
-    {
-      accountId: 8,
-      email: 'example@example.com',
-      nickname: '홍길동',
-      role: 'normal',
-      status: 'ban',
-      joinDate: '2023-01-01',
-    },
-    {
-      accountId: 9,
-      email: 'example@example.com',
-      nickname: '홍길동',
-      role: 'normal',
-      status: 'active',
-      joinDate: '2023-01-01',
-    },
-    {
-      accountId: 10,
-      email: 'example@example.com',
-      nickname: '홍길동',
-      role: 'normal',
-      status: 'ban',
-      joinDate: '2023-01-01',
-    },
-  ],
-};
-
 const Table = () => {
+  const params = useGetParams();
+  const { data: users } = useQuery(
+    ['userList', params],
+    () => userList(params),
+    {
+      keepPreviousData: true,
+    }
+  );
   const [checkList, setCheckList] = useState<number[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -117,28 +30,30 @@ const Table = () => {
 
   const allCheck = (e: React.MouseEvent<HTMLInputElement>) => {
     const { checked } = e.target as HTMLInputElement;
-    if (checked) {
-      setCheckList(exData.data.map(({ accountId }) => accountId));
-    } else {
-      setCheckList([]);
+    if (users) {
+      if (checked) {
+        setCheckList(users?.content.map(({ accountId }) => accountId));
+      } else {
+        setCheckList([]);
+      }
     }
   };
 
   const isChecked = (id: number) => checkList.includes(id);
 
   const userStatus = {
-    active: '정상',
-    ban: '차단',
+    NORMAL: '정상',
+    BAN: '차단',
   };
   const userRole = {
-    normal: '일반 회원',
-    promotion: '광고 업체',
+    ROLE_USER: '일반 회원',
+    ROLE_ADMIN: '관리 회원',
   };
 
   useEffect(() => {
     const all = document.getElementById('all') as HTMLInputElement;
 
-    if (checkList.length === exData.data.length) {
+    if (checkList.length === users?.content.length) {
       all.checked = true;
     } else {
       all.checked = false;
@@ -149,7 +64,10 @@ const Table = () => {
     <SearchBox>
       <SearchTitle>
         검색 결과&nbsp; <span style={{ color: COLORS.MAIN }}>10</span>
-        <span style={{ color: COLORS.MEDIUM_GRAY }}> / 총 10명 검색 결과</span>
+        <span style={{ color: COLORS.MEDIUM_GRAY }}>
+          {' '}
+          / 총 {users?.totalElements}명 검색 결과
+        </span>
       </SearchTitle>
       <Controller>
         <CustomRadio>
@@ -178,7 +96,7 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {exData.data.map(
+          {users?.content.map(
             ({ accountId, email, nickname, role, status, joinDate }) => (
               <tr key={accountId} id={String(isChecked(accountId))}>
                 <td>
@@ -202,7 +120,7 @@ const Table = () => {
           )}
         </tbody>
       </CustomTable>
-      <Pagination count={exData.totalElements} />
+      <Pagination count={users?.totalElements || 0} />
     </SearchBox>
   );
 };
