@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
+import { Suspense } from 'react';
 
+import Loading from '../shared/Loading';
 import Search from './UserList/Search';
 import Table from './UserList/Table';
 
@@ -7,7 +9,9 @@ const UserList = () => {
   return (
     <Container>
       <Search />
-      <Table />
+      <Suspense fallback={<Loading>로딩중</Loading>}>
+        <Table />
+      </Suspense>
     </Container>
   );
 };
