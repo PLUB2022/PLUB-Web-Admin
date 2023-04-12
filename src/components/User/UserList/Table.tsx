@@ -63,7 +63,8 @@ const Table = () => {
   return (
     <SearchBox>
       <SearchTitle>
-        검색 결과&nbsp; <span style={{ color: COLORS.MAIN }}>10</span>
+        검색 결과&nbsp;{' '}
+        <span style={{ color: COLORS.MAIN }}>{users?.content.length}</span>
         <span style={{ color: COLORS.MEDIUM_GRAY }}>
           {' '}
           / 총 {users?.totalElements}명 검색 결과
