@@ -61,7 +61,7 @@ const Table = () => {
   }, [checkList]);
 
   return (
-    <SearchBox>
+    <SearchBox id='table'>
       <SearchTitle>
         검색 결과&nbsp;{' '}
         <span style={{ color: COLORS.MAIN }}>{users?.content.length}</span>
