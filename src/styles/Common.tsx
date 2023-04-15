@@ -61,6 +61,9 @@ export const SearchBox = styled.div`
   padding: 24px;
   background-color: #fbfbfb;
   border-radius: 20px;
+  &#table {
+    margin-bottom: 20px;
+  }
 `;
 
 export const SmallButton = styled.button`
