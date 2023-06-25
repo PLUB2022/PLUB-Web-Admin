@@ -12,6 +12,7 @@ export const API_URLS = {
   USER: {
     LIST: '/accounts',
     SEARCH: '/accounts/search',
+    STATUS: (id: string) => `/accounts/${id}/update-status`,
   },
   SERVICE: {
     NOTICE: {

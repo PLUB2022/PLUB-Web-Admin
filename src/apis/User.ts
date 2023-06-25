@@ -28,10 +28,18 @@ export const userSearch = async (params: UserListParams) => {
   try {
     const {
       data: { accountList },
-    }: UserListResponse = await http.get(API_URLS.USER.LIST, {
+    }: UserListResponse = await http.get(API_URLS.USER.SEARCH, {
       params: params,
     });
     return accountList;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const updateStatus = async (id: string) => {
+  try {
+    await http.put(API_URLS.USER.STATUS(id));
   } catch (error) {
     console.error(error);
   }

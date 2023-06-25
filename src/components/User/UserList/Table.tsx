@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
-import { userList } from '../../../apis/User';
+import { userList, userSearch } from '../../../apis/User';
 import { COLORS } from '../../../constants/colors';
 import useGetParams from '../../../hooks/useGetParams';
 import { SearchBox, SearchTitle, SmallButton } from '../../../styles/Common';
@@ -12,11 +12,12 @@ const Table = () => {
   const params = useGetParams();
   const { data: users } = useQuery(
     ['userList', params],
-    () => userList(params),
+    () => (!params.keyword ? userList(params) : userSearch(params)),
     {
       keepPreviousData: true,
     }
   );
+
   const [checkList, setCheckList] = useState<number[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,10 +46,6 @@ const Table = () => {
     NORMAL: '정상',
     BAN: '차단',
   };
-  const userRole = {
-    ROLE_USER: '일반 회원',
-    ROLE_ADMIN: '관리 회원',
-  };
 
   useEffect(() => {
     const all = document.getElementById('all') as HTMLInputElement;
@@ -76,12 +73,8 @@ const Table = () => {
           <Label htmlFor='all'>전체</Label>
         </CustomRadio>
         <Buttons>
-          <SmallButton id='item'>메일 발송</SmallButton>
-          <SmallButton id='item'>등급 변경</SmallButton>
           <SmallButton id='item'>상태 변경</SmallButton>
-          <SmallButton id='item'>쪽지 발송</SmallButton>
-          <SmallButton id='item'>탈퇴 처리</SmallButton>
-          <SmallButton id='item'>엑셀로 저장</SmallButton>
+          <SmallButton id='item'>영구정지 해제</SmallButton>
         </Buttons>
       </Controller>
       <CustomTable>
@@ -91,14 +84,13 @@ const Table = () => {
             <th>번호</th>
             <th>아이디</th>
             <th>닉네임</th>
-            <th>등급</th>
             <th>상태</th>
             <th>가입일</th>
           </tr>
         </thead>
         <tbody>
           {users?.content.map(
-            ({ accountId, email, nickname, role, status, joinDate }) => (
+            ({ accountId, email, nickname, status, joinDate }) => (
               <tr key={accountId} id={String(isChecked(accountId))}>
                 <td>
                   <Radio
@@ -113,7 +105,6 @@ const Table = () => {
                 <td>{accountId}</td>
                 <td id='email'>{email}</td>
                 <td>{nickname}</td>
-                <td>{userRole[role]}</td>
                 <td id={status}>{userStatus[status]}</td>
                 <td id='date'>{joinDate}</td>
               </tr>
