@@ -2,13 +2,66 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
-import { userList, userSearch } from '../../../apis/User';
+import {
+  unsuspending,
+  updateStatus,
+  userList,
+  userSearch,
+} from '../../../apis/User';
 import { COLORS } from '../../../constants/colors';
 import useGetParams from '../../../hooks/useGetParams';
+import { queryClient } from '../../../main';
 import { SearchBox, SearchTitle, SmallButton } from '../../../styles/Common';
+import Button from '../../shared/Button';
+import Modal from '../../shared/Modal';
 import Pagination from '../../shared/Pagination';
 
+interface StatusList {
+  value:
+    | 'NORMAL'
+    | 'PAUSED'
+    | 'BANNED'
+    | 'PERMANENTLY_BANNED'
+    | 'DELETED'
+    | 'INACTIVE'
+    | 'DORMANT';
+  label: string;
+}
+
+const statusList: StatusList[] = [
+  {
+    value: 'NORMAL',
+    label: '정상',
+  },
+  {
+    value: 'PAUSED',
+    label: '일시 정지',
+  },
+  {
+    value: 'BANNED',
+    label: '정지',
+  },
+  {
+    value: 'PERMANENTLY_BANNED',
+    label: '영구 정지',
+  },
+  {
+    value: 'DELETED',
+    label: '삭제됨',
+  },
+  {
+    value: 'INACTIVE',
+    label: '비활성화',
+  },
+  {
+    value: 'DORMANT',
+    label: '휴면',
+  },
+];
+
 const Table = () => {
+  const [modalOn, setModalOn] = useState(false);
+  const [status, setStatus] = useState('');
   const params = useGetParams();
   const { data: users } = useQuery(
     ['userList', params],
@@ -42,9 +95,35 @@ const Table = () => {
 
   const isChecked = (id: number) => checkList.includes(id);
 
-  const userStatus = {
-    NORMAL: '정상',
-    BAN: '차단',
+  const handleClickStatusUpdateButton = () => {
+    if (checkList.length === 0) {
+      alert('선택된 회원이 없습니다.');
+      return;
+    }
+    setModalOn(true);
+  };
+
+  const handleClickPermanentBanDisable = () => {
+    if (checkList.length === 0) {
+      alert('선택된 회원이 없습니다.');
+      return;
+    }
+    if (window.confirm('영구정지를 해제하시겠습니까?')) {
+      Promise.all(checkList.map((id) => unsuspending(id))).then(() => {
+        queryClient.invalidateQueries('userList');
+      });
+    }
+  };
+
+  const handleClickStatusUpdate = async () => {
+    if (status === '') {
+      alert('변경할 회원 상태를 선택해주세요.');
+      return;
+    }
+    Promise.all(checkList.map((id) => updateStatus(id, status))).then(() => {
+      queryClient.invalidateQueries('userList');
+      setModalOn(false);
+    });
   };
 
   useEffect(() => {
@@ -73,8 +152,12 @@ const Table = () => {
           <Label htmlFor='all'>전체</Label>
         </CustomRadio>
         <Buttons>
-          <SmallButton id='item'>상태 변경</SmallButton>
-          <SmallButton id='item'>영구정지 해제</SmallButton>
+          <SmallButton id='item' onClick={handleClickStatusUpdateButton}>
+            상태 변경
+          </SmallButton>
+          <SmallButton id='item' onClick={handleClickPermanentBanDisable}>
+            영구정지 해제
+          </SmallButton>
         </Buttons>
       </Controller>
       <CustomTable>
@@ -105,7 +188,9 @@ const Table = () => {
                 <td>{accountId}</td>
                 <td id='email'>{email}</td>
                 <td>{nickname}</td>
-                <td id={status}>{userStatus[status]}</td>
+                <td id={status}>
+                  {statusList.find(({ value }) => value === status)?.label}
+                </td>
                 <td id='date'>{joinDate}</td>
               </tr>
             )
@@ -113,6 +198,46 @@ const Table = () => {
         </tbody>
       </CustomTable>
       <Pagination count={users?.totalElements || 0} />
+      <Modal isOpen={modalOn} onRequestClose={() => setModalOn(false)}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            width: '100%',
+            height: '100%',
+            gap: '20px',
+          }}>
+          <SearchTitle>회원 상태 변경</SearchTitle>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+            }}>
+            {statusList.map(({ value, label }) => (
+              <CustomRadio key={value}>
+                <Radio
+                  type='radio'
+                  name='status'
+                  id={value}
+                  value={value}
+                  checked={status === value}
+                  onChange={(e) => setStatus(e.target.value)}
+                />
+                <Label htmlFor={value}>{label}</Label>
+              </CustomRadio>
+            ))}
+          </div>
+          <Button
+            width='130px'
+            fontSize='1.6rem'
+            borderRadius='10px'
+            onClick={handleClickStatusUpdate}>
+            변경하기
+          </Button>
+        </div>
+      </Modal>
     </SearchBox>
   );
 };

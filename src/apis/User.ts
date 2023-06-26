@@ -37,9 +37,17 @@ export const userSearch = async (params: UserListParams) => {
   }
 };
 
-export const updateStatus = async (id: string) => {
+export const updateStatus = async (id: number, status: string) => {
   try {
-    await http.put(API_URLS.USER.STATUS(id));
+    await http.put(API_URLS.USER.STATUS(id, status));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const unsuspending = async (id: number) => {
+  try {
+    await http.put(API_URLS.USER.UNSUSPENDING(id));
   } catch (error) {
     console.error(error);
   }
