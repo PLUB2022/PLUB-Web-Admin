@@ -28,10 +28,26 @@ export const userSearch = async (params: UserListParams) => {
   try {
     const {
       data: { accountList },
-    }: UserListResponse = await http.get(API_URLS.USER.LIST, {
+    }: UserListResponse = await http.get(API_URLS.USER.SEARCH, {
       params: params,
     });
     return accountList;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const updateStatus = async (id: number, status: string) => {
+  try {
+    await http.put(API_URLS.USER.STATUS(id, status));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const unsuspending = async (id: number) => {
+  try {
+    await http.put(API_URLS.USER.UNSUSPENDING(id));
   } catch (error) {
     console.error(error);
   }
